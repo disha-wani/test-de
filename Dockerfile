@@ -1,17 +1,13 @@
 FROM microsoft/dotnet:1.0.0-preview2-sdk
 
-# Set the Working Directory
-WORKDIR /app
 
-# Configure the listening port to 80
-ENV ASPNETCORE_URLS http://*:80
-EXPOSE 80
-
-# Copy the app
-COPY . /app
-
-# Restore NuGet Packages
+MAINTAINER click2cloud.inc
+# Install the application
+ADD . /app
+ 
 RUN dotnet restore
 
-# Start the app
+ENV ASPNETCORE_URLS http://*:80
+EXPOSE 80
+# Define command to run the application when the container starts
 CMD ["microsoft/dotnet:1.0.0-preview2-sdk", "dotnet run"] 
